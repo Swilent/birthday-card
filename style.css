@@ -1,0 +1,595 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'SimSun', serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 信件框架 */
+.letter-frame {
+    position: relative;
+    background: linear-gradient(to bottom, #FFF8DC, #FAF0E6);
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 100px rgba(139, 115, 85, 0.1);
+    min-height: auto;
+}
+
+/* 边框装饰 */
+.frame-border {
+    position: absolute;
+    background: linear-gradient(to bottom, #5D4E37, #8B7355, #5D4E37);
+    border-radius: 3px;
+}
+
+.frame-top {
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 8px;
+    border-radius: 10px 10px 0 0;
+}
+
+.frame-right {
+    top: 10px;
+    right: 0;
+    bottom: 10px;
+    width: 8px;
+    border-radius: 0 10px 10px 0;
+}
+
+.frame-bottom {
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 8px;
+    border-radius: 0 0 10px 10px;
+}
+
+.frame-left {
+    top: 10px;
+    left: 0;
+    bottom: 10px;
+    width: 8px;
+    border-radius: 10px 0 0 10px;
+}
+
+/* 信件内容 */
+.letter-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 头部 */
+.letter-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header-decoration {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #8B7355, transparent);
+    margin-bottom: 20px;
+}
+
+.recipient-name {
+    font-size: 28px;
+    color: #5D4E37;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px rgba(93, 78, 55, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #8B7355;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: #FFF8DC;
+    border-radius: 1px;
+}
+
+.close-btn::before {
+    transform: rotate(45deg);
+}
+
+.close-btn::after {
+    transform: rotate(-45deg);
+}
+
+.close-btn:hover {
+    background: #A0522D;
+    transform: rotate(90deg);
+}
+
+/* 正文区域 */
+.letter-body {
+    position: relative;
+}
+
+.message-content {
+    font-size: 18px;
+    line-height: 2;
+    color: #4A3F35;
+    text-align: justify;
+}
+
+.greeting {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #5D4E37;
+}
+
+.message-text {
+    margin-bottom: 15px;
+    text-indent: 2em;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 20px;
+    font-style: italic;
+    color: #8B7355;
+}
+
+.postscript {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #8B7355;
+    font-style: italic;
+}
+
+/* 礼物区域 */
+.gift-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.gift-icon {
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.gift-icon:hover {
+    transform: scale(1.1);
+    animation: none;
+}
+
+.gift-hint {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #8B7355;
+    opacity: 0.8;
+}
+
+/* 蜡烛火焰动画 */
+.flame {
+    animation: flicker 0.5s ease-in-out infinite alternate;
+}
+
+.flame-inner {
+    animation: flicker 0.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scaleY(1.1);
+    }
+}
+
+/* 庆祝动画覆盖层 */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.celebration-overlay.active {
+    display: flex;
+}
+
+#confettiCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.celebration-message {
+    position: relative;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.celebration-message h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.celebration-message p {
+    font-size: 24px;
+    color: #FFF;
+}
+
+/* ==================== 二维码样式 ==================== */
+.qr-code-container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.5s ease-out 0.3s both;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    border: 5px solid white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    background: white;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.qr-code:hover {
+    transform: scale(1.05);
+}
+
+.qr-hint {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #FFD700;
+    text-align: center;
+}
+
+/* ==================== 音乐控制 ==================== */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.music-control:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.music-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    will-change: transform, box-shadow;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-toggle.playing {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+}
+
+.music-icon {
+    font-size: 20px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* ==================== 感谢页面 ==================== */
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.thank-you-content {
+    text-align: center;
+    color: #5D4E37;
+}
+
+.thank-you-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.thank-you-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #8B7355;
+}
+
+.reopen-btn {
+    padding: 12px 35px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    font-family: 'Microsoft YaHei', 'SimSun', serif;
+}
+
+.reopen-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.reopen-btn:active {
+    transform: translateY(0);
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .letter-frame {
+        padding: 20px;
+    }
+
+    /* 增大触摸区域 */
+    .close-btn {
+        width: 40px;
+        height: 40px;
+        top: -15px;
+    }
+
+    .gift-icon {
+        padding: 15px;
+        margin: -15px;
+    }
+
+    /* 触摸反馈 */
+    .music-toggle:active,
+    .gift-icon:active,
+    .close-btn:active {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+
+    /* 优化按钮触摸体验 */
+    button {
+        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .recipient-name {
+        font-size: 22px;
+    }
+
+    .message-content {
+        font-size: 16px;
+    }
+
+    .gift-icon svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .celebration-message h2 {
+        font-size: 32px;
+    }
+
+    .celebration-message p {
+        font-size: 18px;
+    }
+
+    .qr-code {
+        width: 160px;
+        height: 160px;
+    }
+
+    .qr-hint {
+        font-size: 14px;
+    }
+
+    .music-control {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+
+    .volume-slider {
+        width: 60px;
+    }
+
+    .thank-you-content h2 {
+        font-size: 28px;
+    }
+
+    .thank-you-content p {
+        font-size: 16px;
+    }
+}
+
+/* ==================== 无障碍改进 ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

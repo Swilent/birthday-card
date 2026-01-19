@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="精美的生日祝福贺卡，带给您最温暖的祝福">
+    <meta name="theme-color" content="#667eea">
+    <title>生日祝福</title>
+    <link rel="icon" type="image/svg+xml" href="cake.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 信件边框容器 -->
+        <div class="letter-frame">
+            <!-- 顶部边框装饰 -->
+            <div class="frame-border frame-top"></div>
+            <div class="frame-border frame-right"></div>
+            <div class="frame-border frame-bottom"></div>
+            <div class="frame-border frame-left"></div>
+
+            <!-- 信件内容区域 -->
+            <div class="letter-content">
+                <!-- 头部 -->
+                <div class="letter-header">
+                    <div class="header-decoration"></div>
+                    <h1 class="recipient-name">生日贺卡</h1>
+                    <button class="close-btn" id="closeBtn" aria-label="关闭"></button>
+                </div>
+
+                <!-- 信件正文 -->
+                <div class="letter-body">
+                    <div class="message-content">
+                        <p class="greeting">To xxx：</p>
+                        <p class="message-text">
+                            想说的话第一段
+                        </p>
+                        <p class="message-text">
+                            想说的话第二段
+                        </p>
+                        <p class="message-text">
+                            祝一切顺意！
+                        </p>
+                        <p class="signature">
+                            你的名字
+                        </p>
+                        <p class="postscript">
+                            P.S. 我为你准备了一份小小的礼物，希望你会喜欢！
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- 底部礼物区域 -->
+                <div class="gift-section" id="giftSection">
+                    <div class="gift-icon" id="giftIcon">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
+                            <!-- 蛋糕底座 -->
+                            <ellipse cx="60" cy="95" rx="50" ry="12" fill="#D4A574"/>
+                            <rect x="10" y="55" width="100" height="40" fill="#F5E6D3" rx="5"/>
+
+                            <!-- 蛋糕中层 -->
+                            <rect x="15" y="35" width="90" height="25" fill="#E8D4C4" rx="3"/>
+
+                            <!-- 蛋糕顶层 -->
+                            <ellipse cx="60" cy="35" rx="45" ry="12" fill="#FFF8F0"/>
+                            <ellipse cx="60" cy="35" rx="38" ry="8" fill="#FFE4B5"/>
+
+                            <!-- 蜡烛 -->
+                            <rect x="56" y="15" width="8" height="20" fill="#FF6B9D" rx="2"/>
+                            <ellipse cx="60" cy="15" rx="5" ry="3" fill="#FFB6D3"/>
+
+                            <!-- 火焰 -->
+                            <ellipse cx="60" cy="8" rx="6" ry="10" fill="#FFD700" class="flame"/>
+                            <ellipse cx="60" cy="6" rx="3" ry="6" fill="#FFA500" class="flame-inner"/>
+
+                            <!-- 装饰 -->
+                            <circle cx="30" cy="45" r="4" fill="#FFB6D3"/>
+                            <circle cx="50" cy="48" r="3" fill="#FFB6D3"/>
+                            <circle cx="70" cy="48" r="3" fill="#FFB6D3"/>
+                            <circle cx="90" cy="45" r="4" fill="#FFB6D3"/>
+                        </svg>
+                        <p class="gift-hint">点击领取礼物</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 庆祝动画容器 -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <canvas id="confettiCanvas"></canvas>
+        <div class="celebration-message">
+            <h2>生日快乐</h2>
+            <p>愿你每天都充满快乐和幸福！</p>
+            <div class="qr-code-container">
+                <img src="QRcode.jpg" alt="生日礼物二维码" class="qr-code">
+                <p class="qr-hint">扫描二维码领取你的生日礼物</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
